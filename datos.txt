@@ -1,0 +1,13 @@
+Diseño Y Programación Web
+DWN4BV 
+2023
+Tp nro 1
+
+user:   leandro@hola.com (USUARIO)
+pw:     asdasd
+
+user:   martin@hola.com (USUARIO)
+pw:     asdasd
+
+user:   loco@hola.com 	(ADMIN)
+pw:     asdasd
