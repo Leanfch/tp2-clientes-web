@@ -15,7 +15,7 @@ export default {
 
 <template>
     <button
-        class="p-3 font-bold text-white hover:text-black hover:p-4 transition-all uppercase disabled:bg-slate-500 rounded-md text-blanco bg-red-600 mx-auto hover:bg-red-300 active:bg-red-950"
+        class="p-3 font-bold text-white uppercase disabled:bg-slate-500 rounded-md text-blanco transition-colors bg-red-600 mx-auto hover:bg-red-700 active:bg-red-950"
         type="submit" :disabled="loading">
         <template v-if="!loading">
             <slot>Enviar</slot>

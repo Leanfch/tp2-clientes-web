@@ -29,6 +29,9 @@ export default {
                     price: this.newProduct.price,
                 });
 
+                // Limpiar el caché de productos para forzar recarga desde Firebase
+                localStorage.removeItem('products');
+
                 this.newProduct = {
                     name: '',
                     description: '',
