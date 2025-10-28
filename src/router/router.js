@@ -69,6 +69,10 @@ router.beforeEach((to, from) => {
     if (user.id === null && to.meta.requiresAuth) {
         return "/iniciar-sesion"
     }
+    // Validar rol de administrador
+    if (to.meta.requiresAdmin && user.role !== 'admin') {
+        return "/"
+    }
 })
 
 export default router

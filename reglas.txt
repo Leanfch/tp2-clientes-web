@@ -13,6 +13,10 @@ service cloud.firestore {
       allow create: if request.auth != null;
     }
     
+    match /sales/{sale} {
+      allow read, update, create: if request.auth != null;
+    }
+    
 		match /hosting/{document=**} {
       allow read, write: if true;
     }

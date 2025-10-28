@@ -121,7 +121,7 @@ export default {
             </div>
 
             <!-- Menú móvil -->
-            <div v-if="mobileMenuOpen" class="lg:hidden mt-2 rounded-b-xl bg-gray-600 pt-4">
+            <div v-if="mobileMenuOpen" class="lg:hidden mt-2 pt-1 backdrop-blur-lg bg-slate-800/50 rounded-b-lg shadow-xl">
                 <ul class="flex flex-col text-center gap-2 font-semibold">
                     <li>
                         <router-link
