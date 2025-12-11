@@ -4,7 +4,7 @@ export default {
 };
 </script>
 <template>
-    <footer class="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 text-white mt-auto">
+    <footer class="bg-gradient-to-r from-slate-700 via-slate-600 to-gray-700 text-white mt-auto">
         <div class="container mx-auto px-4 md:px-6 py-8 md:py-10">
             <!-- Desktop Layout -->
             <div class="hidden md:flex justify-between items-center">
@@ -63,7 +63,7 @@ export default {
             </div>
 
             <!-- Copyright -->
-            <div class="mt-6 pt-6 border-t border-gray-600 text-center text-sm text-gray-400">
+            <div class="mt-6 pt-6 border-t border-gray-500 text-center text-sm text-gray-300">
                 <p>&copy; 2023 VitaHost. Todos los derechos reservados.</p>
             </div>
         </div>

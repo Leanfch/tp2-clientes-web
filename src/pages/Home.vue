@@ -51,31 +51,74 @@ export default {
 </script>
 
 <template>
-    <div class="px-4 md:px-6">
-        <h1 class="mb-10 md:mb-20 font-bold text-3xl md:text-5xl text-center mt-6 md:mt-10">Servicio de hosting</h1>
-        <div v-if="productsLoading" class="flex items-center justify-center align-middle">
+    <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 -mx-4 -mt-4 px-4 md:px-8 py-12">
+        <!-- Hero Section -->
+        <div class="max-w-7xl mx-auto mb-16 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
+                Planes de Hosting <span class="bg-gradient-to-r from-orange-600 to-red-500 bg-clip-text text-transparent">Profesional</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+                Elige el plan perfecto para tu proyecto. Hosting rápido, seguro y escalable.
+            </p>
+        </div>
+
+        <!-- Loader -->
+        <div v-if="productsLoading" class="flex items-center justify-center py-20">
             <LoaderCircle />
         </div>
-        <div class="flex flex-col md:flex-row justify-center gap-6 md:gap-6 max-w-7xl mx-auto">
-            <div class="flex-col flex w-full justify-between p-6 md:p-8 rounded-2xl shadow-lg transition-transform hover:scale-105" v-for="product in products" :class="{
-                'bg-gradient-to-br from-emerald-600 to-emerald-700 text-white': product.name === 'Vita Basic',
-                'bg-gradient-to-br from-blue-700 to-indigo-800 text-white': product.name === 'Vita Plus',
-                'bg-gradient-to-br from-purple-700 to-pink-800 text-white': product.name === 'Vita Premium',
-                'bg-gradient-to-br from-teal-600 to-cyan-700 text-white': !(product.name === 'Vita Basic' || product.name === 'Vita Plus' || product.name === 'Vita Premium')
-            }" :key="product.id">
-                <h2 class="text-center text-2xl md:text-2xl mb-3 font-bold uppercase h-10">{{ product.name }}</h2>
-                <p class="text-center md:leading-none my-4 text-base md:text-md opacity-90 min-h-xl">{{ product.description }}</p>
-                <p class="font-bold mb-3 text-base md:text-lg text-center">Funciones principales:</p>
-                <ul class="space-y-1 mb-6 text-sm md:text-base flex flex-col">
-                    <li v-for="feature in product.features" :key="feature" class="flex items-start">
-                        <span class="mr-2">✓</span>
-                        <span>{{ feature }}</span>
-                    </li>
-                </ul>
-                <div class="flex flex-col gap-5 justify-center items-center">
-                    <p class="font-bold mt-4 text-center text-4xl md:text-5xl">${{ product.price }}</p>
+
+        <!-- Cards de Planes -->
+        <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div v-for="product in products" :key="product.id"
+                class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:scale-105"
+                :class="{
+                    'ring-2 ring-orange-500 ring-offset-2': product.name === 'Vita Plus'
+                }">
+
+                <!-- Badge "Popular" para Vita Plus -->
+                <div v-if="product.name === 'Vita Plus'"
+                    class="absolute top-4 right-4 bg-gradient-to-r from-orange-600 to-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10">
+                    POPULAR
+                </div>
+
+                <div class="p-8">
+                    <!-- Nombre del Plan -->
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">
+                        {{ product.name }}
+                    </h2>
+
+                    <!-- Descripción -->
+                    <p class="text-gray-600 text-center mb-6 min-h-[3rem]">
+                        {{ product.description }}
+                    </p>
+
+                    <!-- Precio -->
+                    <div class="text-center mb-8 py-6 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl">
+                        <div class="text-5xl font-bold bg-gradient-to-r from-orange-600 to-red-500 bg-clip-text text-transparent">
+                            ${{ product.price }}
+                        </div>
+                        <div class="text-sm text-gray-500 mt-2">por mes</div>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="mb-8">
+                        <p class="text-sm font-semibold text-gray-700 mb-4 uppercase tracking-wide">Incluye:</p>
+                        <ul class="space-y-3">
+                            <li v-for="feature in product.features" :key="feature"
+                                class="flex items-start text-gray-700">
+                                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-sm">{{ feature }}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Botón -->
                     <button @click="buyProduct(product.id)"
-                        class="w-full md:w-auto px-6 py-3 bg-white text-gray-800 hover:bg-gray-100 transition-all duration-200 uppercase font-bold rounded-lg shadow-md hover:shadow-xl">Comprar</button>
+                        class="w-full py-4 px-6 bg-gradient-to-r from-orange-600 to-red-500 hover:from-orange-700 hover:to-red-600 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        Comenzar Ahora
+                    </button>
                 </div>
             </div>
         </div>

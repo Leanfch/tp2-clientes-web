@@ -9,11 +9,12 @@ export default {
 </script>
 
 <template>
-    <NavBar />
-    <div class="container h-full m-auto p-4">
-        <router-view>
-        </router-view>
+    <div class="min-h-screen flex flex-col">
+        <NavBar />
+        <main class="flex-1 container mx-auto px-4 pt-24">
+            <router-view></router-view>
+        </main>
+        <FooterComponent />
     </div>
-    <FooterComponent />
 </template>
 
