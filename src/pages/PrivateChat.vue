@@ -33,11 +33,24 @@ export default {
     },
     methods: {
         handleSendMessage() {
+            if (!this.newMessage.message.trim()) return;
+
             sendPrivateChatMessage({
                 senderId: this.authUser.id,
                 receiverId: this.user.id,
                 message: this.newMessage.message
-            })
+            });
+
+            // Limpiar el input después de enviar
+            this.newMessage.message = '';
+        },
+        handleKeydown(event) {
+            // Enviar con Enter (sin Shift)
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                this.handleSendMessage();
+            }
+            // Shift + Enter permite nueva línea (comportamiento por defecto)
         },
         formatDate(date) {
             return dateToString(date);
@@ -88,7 +101,7 @@ export default {
         <h2 class="sr-only">Enviar mensajes</h2>
         <form class="flex gap-2" action="#" @submit.prevent="handleSendMessage">
             <label for="message" class="sr-only">Mensaje</label>
-            <BaseTextarea id="message" class="w-11/12" v-model="newMessage.message" />
+            <BaseTextarea id="message" class="w-11/12" v-model="newMessage.message" @keydown="handleKeydown" />
             <BaseButton class="w-1/12">Enviar</BaseButton>
         </form>
     </template>

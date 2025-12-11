@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Read(//c/Users/leanf/Desktop/works/**)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(findstr:*)",
+      "Bash(dir:*)"
     ],
     "deny": [],
     "ask": []

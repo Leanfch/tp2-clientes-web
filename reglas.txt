@@ -5,45 +5,50 @@ service cloud.firestore {
 
     // Debe estar autenticado para poder participar del chat general
     match /chats/{chat} {
-    	allow read, create: if request.auth != null;
+      allow read, create: if request.auth != null;
     }
+
     // El usuario puede cambiar su propia información
     match /users/{userId} {
       allow read, update: if request.auth != null && request.auth.uid == userId;
       allow create: if request.auth != null;
     }
     
-    match /sales/{sale} {
-      allow read, update, create: if request.auth != null;
+    // Hosting: lectura y escritura permitida para todos
+    match /hosting/{document=**} {
+      allow read, write: if true;
     }
     
-		match /hosting/{document=**} {
-      allow read, write: if true;
+    // Ventas: solo usuarios autenticados pueden crear y gestionar sus propias ventas
+    match /sales/{sale} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && request.auth.uid == resource.data.userId;
     }
     
     // Debe estar autenticado para leer el perfil
     match /users/{user} {
-    	allow read: if request.auth != null;
+      allow read: if request.auth != null;
       
       allow create: if
-      	request.auth != null && request.auth.uid == user;
+        request.auth != null && request.auth.uid == user;
     }
     
     // Debe ser parte de la conversacion privada para poder participar
     match /private-chats/{chat} {
-    	allow read: if 
-      	request.auth != null && request.auth.uid in resource.data.users;
+      allow read: if 
+        request.auth != null && request.auth.uid in resource.data.users;
       
-    	allow create: if 
-      	request.auth != null && request.auth.uid in request.resource.data.users;
+      allow create: if 
+        request.auth != null && request.auth.uid in request.resource.data.users;
         
       match /messages/{message} {
-      	allow read: if
-        	request.auth != null && request.auth.uid in get(/databases/$(database)/documents/private-chats/$(chat)).data.users;
+        allow read: if
+          request.auth != null && request.auth.uid in get(/databases/$(database)/documents/private-chats/$(chat)).data.users;
 
-      	allow create: if
-        	request.auth != null &&
-        	request.auth.uid in get(/databases/$(database)/documents/private-chats/$(chat)).data.users && request.auth.uid == request.resource.data.senderId;
+        allow create: if
+          request.auth != null &&
+          request.auth.uid in get(/databases/$(database)/documents/private-chats/$(chat)).data.users && request.auth.uid == request.resource.data.senderId;
       }
     }
   }

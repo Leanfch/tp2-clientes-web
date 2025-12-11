@@ -40,8 +40,15 @@ export default {
             const productRef = doc(db, 'hosting', productId);
             try {
                 await deleteDoc(productRef);
+
+                // Limpiar el caché de localStorage
+                localStorage.removeItem('products');
+
                 // Refresh the product list after deleting a product
                 this.products = await fetchProducts();
+
+                // Actualizar el caché con los nuevos datos
+                localStorage.setItem('products', JSON.stringify(this.products));
             } catch (error) {
                 console.error('Error al eliminar el producto:', error);
             }
