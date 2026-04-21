@@ -13,7 +13,7 @@ export default {
                     <ul class="space-y-1 text-gray-300">
                         <li class="font-semibold text-white">Leandro Martín Fernández Chapotot</li>
                         <li class="text-sm">DWN4BV</li>
-                        <li class="text-sm">2023</li>
+                        <li class="text-sm">2025</li>
                     </ul>
                 </div>
 
@@ -49,7 +49,7 @@ export default {
                         <ul class="space-y-1 text-gray-300">
                             <li class="font-semibold text-white">Leandro Martín Fernández Chapotot</li>
                             <li class="text-sm">DWN4BV</li>
-                            <li class="text-sm">2023</li>
+                            <li class="text-sm">2025</li>
                         </ul>
                     </div>
                     <div class="bg-white/5 rounded-lg p-4 text-center">
@@ -64,7 +64,7 @@ export default {
 
             <!-- Copyright -->
             <div class="mt-6 pt-6 border-t border-gray-500 text-center text-sm text-gray-300">
-                <p>&copy; 2023 VitaHost. Todos los derechos reservados.</p>
+                <p>&copy; 2026 VitaHost. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
